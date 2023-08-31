@@ -11,10 +11,10 @@ namespace pjrAtiv.Classes
         public static int Id { get; set; }
         public static string? NomeCorrentista { get; set; }
         public static DateTime? DataNascimento { get; set; }
-        public static string? Logradouro { get; set; }
-        public static string? Numero { get; set; }
-        public static string? Complemento { get; set; }
         public static string? Cidade { get; set; }
+        public static string? Endereco { get; set; }
+        public static string? Email { get; set; }
+        public static string? Telefone { get; set; }
         public static string? Estado { get; set; }
         public static string? Cpf { get; set; }
         public static string? Celular { get; set; }
@@ -28,18 +28,9 @@ namespace pjrAtiv.Classes
 
         public static void Deslogar()
         {
-            UsuarioLogado.Id = 0;
-            UsuarioLogado.NomeCorrentista = String.Empty;
-            UsuarioLogado.DataNascimento = null;
-            UsuarioLogado.Logradouro = String.Empty;
-            UsuarioLogado.Numero = String.Empty;
-            UsuarioLogado.Complemento = null;
-            UsuarioLogado.Cidade = String.Empty;
-            UsuarioLogado.Estado = String.Empty;
-            UsuarioLogado.Cpf = String.Empty;
-            UsuarioLogado.Celular = String.Empty;
-            UsuarioLogado.Senha = String.Empty;
-            UsuarioLogado.Contas.Clear();
+
+            
+            
         }
     }
 }

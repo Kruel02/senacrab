@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using pjrAtiv;
+using DTO;
+using DAL;
+
+
 
 
 namespace pjrAtiv

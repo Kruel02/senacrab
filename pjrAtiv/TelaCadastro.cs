@@ -60,7 +60,9 @@ namespace pjrAtiv
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             conn.ConnectionString = "workstation id=JukabankMOISES.mssql.somee.com;packet size=4096;user id=Moises90_SQLLogin_1;pwd=tjnwoa1ips;data source=JukabankMOISES.mssql.somee.com;persist security info=False;initial catalog=JukabankMOISES";
-            SqlDataAdapter da;
+            
+            SqlDataReader leitor = cmd.ExecuteReader();
+
 
             cmd.CommandText = "CadastrarCliente";
             cmd.CommandType = CommandType.StoredProcedure;
@@ -79,6 +81,8 @@ namespace pjrAtiv
             cmd.Parameters.AddWithValue("@DataCriacao", DateTime.Now);
             cmd.Parameters.AddWithValue("@EstadoCivil", CbEstadoCivil.Text);
             cmd.Parameters.AddWithValue("@UltimoLogin", DateTime.Now);
+
+            
 
             Int32 rowsAffected = cmd.ExecuteNonQuery();
 

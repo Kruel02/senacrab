@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
+using DAL;
+
 
 namespace pjrAtiv
 {
@@ -81,7 +84,7 @@ namespace pjrAtiv
             call.Controls = this.Controls;
             call.MenuStrips("menuStrip1", "logOutToolStripMenuItem", false);
             call.MenuStrips("menuStrip1", "loginToolStripMenuItem", true);
-
+            MessageBox.Show("Deslogado");
 
 
         }

@@ -13,14 +13,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO;
 using BLL;
-
-
+using System.Security.Cryptography;
 
 namespace pjrAtiv
 {
     public partial class TelaLogin : Form
     {
         MethodCall call;
+        Conta conta;
+        Cliente cliente;
         public TelaLogin()
         {
 
@@ -47,11 +48,57 @@ namespace pjrAtiv
 
             //ParentForm.MainMenuStrip.Items.Add("teste");
             call.Controls = this.MdiParent.Controls;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "ValidarLogin48";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = "workstation id=JukabankMOISES.mssql.somee.com;packet size=4096;user id=Moises90_SQLLogin_1;pwd=tjnwoa1ips;data source=JukabankMOISES.mssql.somee.com;persist security info=False;initial catalog=JukabankMOISES";
+
+            cmd.Connection = conexao;
+            conexao.Open();
+
+            //limpando parametros
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("cpf", TxtNome.Text);
+            cmd.Parameters.AddWithValue("senha", TxtSenha.Text);
+
+            SqlDataReader leitor = cmd.ExecuteReader();
+
+            if (leitor.HasRows) 
+            {
+                leitor.Read();
+
+                TxtNome.Text = leitor.GetString("ClienteCPF");
+                TxtSenha.Text = leitor.GetString("ClienteSenha");
+
+                MessageBox.Show("bem vindo"  + "" + leitor.GetString(1));
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("Não logou.");
+            }
+            conexao.Close();
+            leitor.Close();
+          
+
+           
+          
+           
+
+
             
+            
+
+                    //verificar se há linhas retornadas do leitor
+                   
+
             //f.loginToolStripMenuItem.Enabled = false;
             call.MenuStrips("menuStrip1", "loginToolStripMenuItem", false);
             call.MenuStrips("menuStrip1", "logOutToolStripMenuItem", true);
-            SqlConnection conexao = new SqlConnection();
 
 
         }
@@ -70,6 +117,7 @@ namespace pjrAtiv
 
         private void LoginClose(object sender, FormClosedEventArgs e)
         {
+
             
 
             Control[] controls = this.MdiParent.Controls.Find("menuStrip1", true);
@@ -86,7 +134,11 @@ namespace pjrAtiv
                             if (SubmenuItem.Name == "loginToolStripMenuItem")
                             {
                                 SubmenuItem.Enabled = true;
-
+                                if(SubMenu.Name == "logOutToolStripMenuItem") 
+                                {
+                                    SubMenu.Enabled = false;
+                                }
+                                
                             }
 
                         }
