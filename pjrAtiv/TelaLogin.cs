@@ -72,7 +72,8 @@ namespace pjrAtiv
                 TxtNome.Text = leitor.GetString("ClienteCPF");
                 TxtSenha.Text = leitor.GetString("ClienteSenha");
 
-                MessageBox.Show("bem vindo"  + "" + leitor.GetString(1));
+                MessageBox.Show("bem vindo"  + "" + leitor.GetString(1)+ UsuarioLogado.CPF);
+                
 
 
 
@@ -148,6 +149,11 @@ namespace pjrAtiv
 
                 }
             }
+
+           
+            
+
+
 
         }
 

@@ -154,12 +154,12 @@
             // CbEstado
             // 
             CbEstado.FormattingEnabled = true;
-            CbEstado.Items.AddRange(new object[] { "São Paulo", "Rio de Janeiro" });
+            CbEstado.Items.AddRange(new object[] { "Acre (AC)", "Alagoas (AL)", "Amapá (AP)", "Amazonas (AM)", "Bahia (BA)", "Ceará (CE)", "Distrito Federal (DF)", "Espírito Santo (ES)", "Goiás (GO)", "Maranhão (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Minas Gerais (MG)", "Pará (PA)", "Paraíba (PB)", "Paraná (PR)", "Pernambuco (PE)", "Piauí (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rondônia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "São Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)" });
             CbEstado.Location = new Point(209, 98);
             CbEstado.Name = "CbEstado";
             CbEstado.Size = new Size(125, 23);
             CbEstado.TabIndex = 13;
-            CbEstado.Text = "Estado Civil";
+            CbEstado.Text = "Estado";
             // 
             // TelaCadastro
             // 

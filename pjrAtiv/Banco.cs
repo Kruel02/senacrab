@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO;
 using DAL;
-
+using System.Security.Cryptography.X509Certificates;
+using System.Data.SqlClient;
 
 namespace pjrAtiv
 {
@@ -21,8 +22,8 @@ namespace pjrAtiv
         public Banco()
         {
             InitializeComponent();
-            this.Height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
-            this.Width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+            this.Height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height/2;
+            this.Width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width/2;
             logOutToolStripMenuItem.Enabled = false;
 
         }
@@ -30,9 +31,9 @@ namespace pjrAtiv
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+           
             TelaCadastro cadastro = new TelaCadastro();
-
+            
 
 
             if (Application.OpenForms.OfType<TelaCadastro>().Any())
@@ -42,6 +43,7 @@ namespace pjrAtiv
 
 
             }
+            
             cadastro.MdiParent = this;
             cadastro.Show();
         }
@@ -84,9 +86,40 @@ namespace pjrAtiv
             call.Controls = this.Controls;
             call.MenuStrips("menuStrip1", "logOutToolStripMenuItem", false);
             call.MenuStrips("menuStrip1", "loginToolStripMenuItem", true);
-            MessageBox.Show("Deslogado");
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "UpdateTime";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = "workstation id=JukabankMOISES.mssql.somee.com;packet size=4096;user id=Moises90_SQLLogin_1;pwd=tjnwoa1ips;data source=JukabankMOISES.mssql.somee.com;persist security info=False;initial catalog=JukabankMOISES";
+
+            cmd.Connection = conexao;
+            conexao.Open();
+
+            //limpando parametros
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("UltimoLogin", DateTime.Now);
+            cmd.Parameters.AddWithValue("idCliente", UsuarioLogado.Id);
+
+            
+
+            Int32 rowsAffected = cmd.ExecuteNonQuery();
+            
 
 
+                if (rowsAffected == -1)
+                {
+                    MessageBox.Show("Não Atualizou, mas deslogou" + rowsAffected);
+
+
+                }
+                else
+                {
+                    MessageBox.Show(rowsAffected.ToString() + UsuarioLogado.CPF);
+                }
+                conexao.Close();
+
+
+            
         }
 
         private void fecharToolStripMenuItem_Click(object sender, EventArgs e)
