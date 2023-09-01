@@ -120,6 +120,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Banco";
             Text = "Banco";
+            FormClosing += Fechar;
             Load += Banco_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

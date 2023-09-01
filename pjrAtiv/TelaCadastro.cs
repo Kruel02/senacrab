@@ -25,6 +25,7 @@ namespace pjrAtiv
         {
             this.MinimizeBox = false;
             this.MaximizeBox = false;
+            
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
 
@@ -58,12 +59,12 @@ namespace pjrAtiv
 
             MethodCall Metodo = new MethodCall();
             TxtNome.Text = str;
-            TxtEndereco.Text = str;
-            TxtCidade.Text = str;
-            CbEstado.Text = str;
+            TxtEndereco.Text = rng.Next(1,9999).ToString();
+            TxtCidade.Text = rng.Next(0,555555).ToString();
+            CbEstado.Text = "São Paulo";
             TxtCPF.Text = rng.Next(55555, 999999999).ToString();
             TxtRG.Text = rng.Next(0, 99999999).ToString();
-            TxtSenha.Text = rng.Next(0, 5555555).ToString();
+            TxtSenha.Text = rng.Next(0, 5555).ToString();
             CbEstadoCivil.Text = "Solteiro";
             TxtTelefone.Text = rng.Next(1111, 99999).ToString();
             TxtEmail.Text = rng.Next(1, 999999999).ToString();

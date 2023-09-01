@@ -71,6 +71,21 @@ namespace pjrAtiv
 
                 TxtNome.Text = leitor.GetString("ClienteCPF");
                 TxtSenha.Text = leitor.GetString("ClienteSenha");
+                UsuarioLogado.Id = Convert.ToInt32(leitor.GetValue(0));
+                UsuarioLogado.Nome = leitor.GetString (1);
+                UsuarioLogado.Endereco = leitor.GetString (2);
+                UsuarioLogado.Cidade = leitor.GetString (3);
+                UsuarioLogado.DataNascimento = leitor.GetDateTime(4);
+                UsuarioLogado.EstadoCliente = leitor.GetString (5);
+                UsuarioLogado.EstadoCivil = leitor.GetString (6);  
+                UsuarioLogado.Email = leitor.GetString (7);
+                UsuarioLogado.Telefone = leitor.GetString (8);
+                UsuarioLogado.RG =  leitor.GetString (9);
+                UsuarioLogado.CPF = leitor.GetString (10);
+                UsuarioLogado.Senha = leitor.GetString (11);
+                UsuarioLogado.DataCriacao = leitor.GetDateTime(12);
+                UsuarioLogado.UltimoLogin = leitor.GetDateTime(13); 
+
 
                 MessageBox.Show("bem vindo"  + "" + leitor.GetString(1)+ UsuarioLogado.CPF);
                 
@@ -112,7 +127,8 @@ namespace pjrAtiv
 
         private void TelaLogin_Load(object sender, EventArgs e)
         {
-
+            TxtNome.Text = "4069";
+            TxtSenha.Text = "123";
         }
 
 
