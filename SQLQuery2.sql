@@ -36,7 +36,9 @@ go
 
 drop procedure CadastrarCliente2;
 
-create procedure UpdateTime @UltimoLogin DateTime, @IdCliente Int 
+create procedure UpdateTime 
+@UltimoLogin DateTime, 
+@IdCliente Int 
 as
 Update [Cliente] 
 Set 
@@ -45,3 +47,23 @@ where IdCliente = @IdCliente
 
 EXEC UpdateTime @idCliente = 2,  @UltimoLogin = '2009-05-25 00:00:00.000'
 select * from Cliente
+Delete from Cliente where IdCliente = 60;
+
+
+/*criar conta*/
+create procedure CadastrarConta
+@idCliente int,
+@TipoConta varchar(50),
+@SaldoConta Numeric (10,2),
+@statusConta varchar(10),
+@DataCriacao DateTime,
+@UltimoLogin DateTime
+as
+insert into conta (IDCliente,TipoConta, SaldoConta, StatusConta, DataCriação,StatusUltimoLogin)
+values (@idCliente,@TipoConta, @SaldoConta, @statusConta, @DataCriacao, @statusConta)
+select @@identity as 'ultimoID'
+
+drop procedure CadastrarConta;
+SELECT CONVERT(VARCHAR(20), GETDATE(), 100)	
+
+exec CadastrarConta @idCliente = 1, @TipoConta = 'Especial', @SaldoConta = 1234, @statusConta = 'ativa',  @DataCriacao = GetDate(), @UltimoLogin = GetDate

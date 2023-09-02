@@ -31,6 +31,7 @@ namespace pjrAtiv
         SqlCommand cmd = new SqlCommand();
 
 
+
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -165,6 +166,16 @@ namespace pjrAtiv
 
             Int32 rowsAffected = cmd.ExecuteNonQuery();
             conexao.Close();
+            Application.Exit();
+
+        }
+
+        private void criarContaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CriarConta CadastrarConta;
+            CadastrarConta = new CriarConta();
+            CadastrarConta.MdiParent = this;
+            CadastrarConta.Show();
         }
     }
 }

@@ -14,6 +14,7 @@ using DTO;
 using DAL;
 using BLL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using System.Diagnostics.Eventing.Reader;
 
 namespace pjrAtiv
 {
@@ -21,6 +22,7 @@ namespace pjrAtiv
     public partial class TelaCadastro : Form
     {
         MethodCall metodo = new MethodCall();
+        CriarConta CadastrarConta;
         public TelaCadastro()
         {
             this.MinimizeBox = false;
@@ -93,53 +95,69 @@ namespace pjrAtiv
 
         private void BtnCadastrar_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
-            conn.ConnectionString = "workstation id=JukabankMOISES.mssql.somee.com;packet size=4096;user id=Moises90_SQLLogin_1;pwd=tjnwoa1ips;data source=JukabankMOISES.mssql.somee.com;persist security info=False;initial catalog=JukabankMOISES";
-            conn.Open();
-            cmd.CommandText = "CadastrarCliente";
-            cmd.CommandType = CommandType.StoredProcedure;
 
 
 
 
-
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("nomeCliente", TxtNome.Text);
-            cmd.Parameters.AddWithValue("EnderecoCliente", TxtEndereco.Text);
-            cmd.Parameters.AddWithValue("ClienteNascimento", Convert.ToDateTime(DtNascimento.Text));
-            cmd.Parameters.AddWithValue("CidadeCliente", TxtCidade.Text);
-            cmd.Parameters.AddWithValue("EstadoCliente", CbEstado.Text);
-            cmd.Parameters.AddWithValue("ClienteEmail", TxtEmail.Text);
-            cmd.Parameters.AddWithValue("TelefoneCliente", TxtTelefone.Text);
-            cmd.Parameters.AddWithValue("ClienteRG", TxtRG.Text);
-            cmd.Parameters.AddWithValue("ClienteCPF", TxtCPF.Text);
-            cmd.Parameters.AddWithValue("ClienteSenha", TxtSenha.Text);
-            cmd.Parameters.AddWithValue("DataCriacao", DateTime.Now);
-            cmd.Parameters.AddWithValue("EstadoCivil", CbEstadoCivil.Text);
-            cmd.Parameters.AddWithValue("UltimoLogin", DateTime.Now);
-
-
-            Int32 rowsAffected = cmd.ExecuteNonQuery();
-
-
-
-            if (rowsAffected == -1)
+            foreach (TextBox box in this.Controls.OfType<TextBox>())
             {
-                MessageBox.Show("Não cadastrado" + rowsAffected);
+                if (box.Text == string.Empty || box.Text == "" || box.Text == null)
+                {
+                    MessageBox.Show("Põe valor ae");
+                    break;
+                }
+                else
+                {
+                    SqlConnection conn = new SqlConnection();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    conn.ConnectionString = "workstation id=JukabankMOISES.mssql.somee.com;packet size=4096;user id=Moises90_SQLLogin_1;pwd=tjnwoa1ips;data source=JukabankMOISES.mssql.somee.com;persist security info=False;initial catalog=JukabankMOISES";
+                    cmd.CommandText = "CadastrarCliente";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("nomeCliente", TxtNome.Text);
+                    cmd.Parameters.AddWithValue("EnderecoCliente", TxtEndereco.Text);
+                    cmd.Parameters.AddWithValue("ClienteNascimento", Convert.ToDateTime(DtNascimento.Text));
+                    cmd.Parameters.AddWithValue("CidadeCliente", TxtCidade.Text);
+                    cmd.Parameters.AddWithValue("EstadoCliente", CbEstado.Text);
+                    cmd.Parameters.AddWithValue("ClienteEmail", TxtEmail.Text);
+                    cmd.Parameters.AddWithValue("TelefoneCliente", TxtTelefone.Text);
+                    cmd.Parameters.AddWithValue("ClienteRG", TxtRG.Text);
+                    cmd.Parameters.AddWithValue("ClienteCPF", TxtCPF.Text);
+                    cmd.Parameters.AddWithValue("ClienteSenha", TxtSenha.Text);
+                    cmd.Parameters.AddWithValue("DataCriacao", DateTime.Now);
+                    cmd.Parameters.AddWithValue("EstadoCivil", CbEstadoCivil.Text);
+                    cmd.Parameters.AddWithValue("UltimoLogin", DateTime.Now);
+
+
+                    Int32 rowsAffected = cmd.ExecuteNonQuery();
+
+
+                    if (rowsAffected == -1)
+                    {
+                        MessageBox.Show("Não cadastrado" + rowsAffected);
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario Cadastrado");
+                        conn.Close();
+                        MessageBox.Show("Cadastre uma conta");
+                        
+
+
+                    }
+                    break;
+                }
+
 
 
             }
-            else
-            {
-                MessageBox.Show("Usuario Cadastrado");
-            }
 
+            
 
-
-
-            conn.Close();
 
         }
 

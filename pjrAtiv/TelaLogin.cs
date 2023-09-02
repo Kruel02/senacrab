@@ -22,6 +22,8 @@ namespace pjrAtiv
         MethodCall call;
         Conta conta;
         Cliente cliente;
+        CriarConta CadastrarConta;
+
         public TelaLogin()
         {
 
@@ -89,7 +91,10 @@ namespace pjrAtiv
 
                 MessageBox.Show("bem vindo"  + "" + leitor.GetString(1)+ UsuarioLogado.CPF);
                 
-
+                CadastrarConta = new CriarConta();
+                CadastrarConta.MdiParent = this.MdiParent;
+                CadastrarConta.Show();
+                this.Close();
 
 
             }
@@ -99,7 +104,8 @@ namespace pjrAtiv
             }
             conexao.Close();
             leitor.Close();
-          
+            
+
 
            
           
