@@ -41,54 +41,52 @@ namespace pjrAtiv
 
         private void BtnCadastrar_Click(object sender, EventArgs e)
         {
-
-            if (TxtSenha.Text == UsuarioLogado.Senha || textBox1.Text == TxtSenha.Text)
+            try
             {
-                SqlCommand cmd;
-                SqlConnection conexao;
-                Conta cliente;
-                cmd = new SqlCommand();
-                conexao = new SqlConnection();
-                cliente = new Conta();
-                conexao.ConnectionString = "workstation id=JukabankMOISES.mssql.somee.com;packet size=4096;user id=Moises90_SQLLogin_1;pwd=tjnwoa1ips;data source=JukabankMOISES.mssql.somee.com;persist security info=False;initial catalog=JukabankMOISES";
-                cmd.Connection = conexao;
-                cmd.CommandText = "CadastrarConta";
-                cmd.CommandType = CommandType.StoredProcedure;
-                conexao.Open();
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("idCliente", UsuarioLogado.Id);
-                cmd.Parameters.AddWithValue("TipoConta", CBTipoConta.Text);
-                cmd.Parameters.AddWithValue("SaldoConta", Convert.ToDecimal(TxtSalario.Text));
-                cmd.Parameters.AddWithValue("statusConta", "Ativa");
-                cmd.Parameters.AddWithValue("UltimoLogin", Convert.ToDateTime(DateTime.UtcNow));
-                cmd.Parameters.AddWithValue("DataCriacao", Convert.ToDateTime(DateTime.UtcNow));
-               // cliente.IdConta = Convert.ToInt32(cmd.ExecuteScalar());
-                
-
-
-                Int32 rowsAffected = cmd.ExecuteNonQuery();
-
-
-                if (rowsAffected == -1)
+                if (TxtSenha.Text == UsuarioLogado.Senha || textBox1.Text == TxtSenha.Text)
                 {
-                    MessageBox.Show("Não cadastrado" + rowsAffected);
+
+                    SqlCommand cmd;
+                    SqlConnection conexao;
+                    Conta cliente;
+                    cmd = new SqlCommand();
+                    conexao = new SqlConnection();
+                    cliente = new Conta(UsuarioLogado.Id, Convert.ToDecimal(TxtSalario.Text), "Ativa");
+
+                    conexao.ConnectionString = "workstation id=JukabankMOISES.mssql.somee.com;packet size=4096;user id=Moises90_SQLLogin_1;pwd=tjnwoa1ips;data source=JukabankMOISES.mssql.somee.com;persist security info=False;initial catalog=JukabankMOISES";
+                    cmd.Connection = conexao;
+                    cmd.CommandText = "pi_Conta_48";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("idCorrentista", UsuarioLogado.Id);
+                    cmd.Parameters.AddWithValue("TipoConta", CBTipoConta.Text);
+                    cmd.Parameters.AddWithValue("saldo", Convert.ToDecimal(TxtSalario.Text));
+                    cmd.Parameters.AddWithValue("statusConta", "Ativa");
+
+
+                    conexao.Open();
+                    cliente.IdConta = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    MessageBox.Show(cliente.IdConta.ToString());
+
+                   
                     conexao.Close();
 
                 }
-                else
-                {
-                    MessageBox.Show("Usuario Cadastrado");
-                    conexao.Close();
-
-
-
-
-                }
-
-
-
+             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
+           
+
+
+
+
             
+          
 
 
         }
