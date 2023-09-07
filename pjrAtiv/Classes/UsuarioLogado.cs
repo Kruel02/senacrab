@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
-
+using System.Runtime.CompilerServices;
 
 namespace pjrAtiv.Classes
 {
@@ -33,13 +33,19 @@ namespace pjrAtiv.Classes
 
         public static void Deslogar()
         {
-            
-            
+            UsuarioLogado.Id = 0;
+            UsuarioLogado.Nome = string.Empty;
+            UsuarioLogado.Endereco = string.Empty;
+            UsuarioLogado.EstadoCliente = string.Empty;
+            UsuarioLogado.EstadoCivil = string.Empty;
+            UsuarioLogado.Email = string.Empty;
+            UsuarioLogado.Telefone = string.Empty;
+            UsuarioLogado.RG = string.Empty;
+            UsuarioLogado.CPF = string.Empty;
+           
 
-
-            
-            
         }
+       
     }
 }
 

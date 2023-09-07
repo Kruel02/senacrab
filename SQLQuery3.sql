@@ -22,3 +22,32 @@ select @@identity as 'ultimoID'
 
 exec pi_Conta_48 4, 'Correntista', 1200, 'ativa';
 
+
+create procedure AtualizarCliente
+@ClienteID int,
+@Clientenome nvarchar(150),
+@EnderecoCliente nvarchar(150),
+@Cidadecliente nvarchar(255),
+@ClienteNascimento datetime,
+@EstadoCliente varchar(12),
+@EstadoCivil varchar(12),
+@EmailCliente nvarchar(250),
+@Telefone char(15),
+@cpf char(15),
+@rg char(11)
+as
+Begin
+Update Cliente
+set NomeCliente = @Clientenome,
+EndereçoCliente = @EnderecoCliente,
+CidadeCliente = @Cidadecliente,
+ClienteNascimento = @ClienteNascimento,
+EstadoCliente = @EstadoCliente,
+EstadoCivil = @EstadoCivil,
+Cliente_Email = @EmailCliente,
+TelefoneCliente = @Telefone,
+ClienteRG = @rg,
+ClienteCPF= @cpf
+where idCliente  = @ClienteID
+End
+

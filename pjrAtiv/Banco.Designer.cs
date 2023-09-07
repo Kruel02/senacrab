@@ -39,6 +39,7 @@
             depositoToolStripMenuItem = new ToolStripMenuItem();
             transferenciaToolStripMenuItem = new ToolStripMenuItem();
             saqueToolStripMenuItem = new ToolStripMenuItem();
+            alterarDadosToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -88,7 +89,7 @@
             // 
             // operaçõesToolStripMenuItem
             // 
-            operaçõesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { criarContaToolStripMenuItem, depositoToolStripMenuItem, transferenciaToolStripMenuItem, saqueToolStripMenuItem });
+            operaçõesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { criarContaToolStripMenuItem, depositoToolStripMenuItem, transferenciaToolStripMenuItem, saqueToolStripMenuItem, alterarDadosToolStripMenuItem });
             operaçõesToolStripMenuItem.Name = "operaçõesToolStripMenuItem";
             operaçõesToolStripMenuItem.Size = new Size(75, 20);
             operaçõesToolStripMenuItem.Text = "Operações";
@@ -105,6 +106,7 @@
             depositoToolStripMenuItem.Name = "depositoToolStripMenuItem";
             depositoToolStripMenuItem.Size = new Size(180, 22);
             depositoToolStripMenuItem.Text = "Deposito";
+            depositoToolStripMenuItem.Click += depositoToolStripMenuItem_Click;
             // 
             // transferenciaToolStripMenuItem
             // 
@@ -117,6 +119,13 @@
             saqueToolStripMenuItem.Name = "saqueToolStripMenuItem";
             saqueToolStripMenuItem.Size = new Size(180, 22);
             saqueToolStripMenuItem.Text = "Saque";
+            // 
+            // alterarDadosToolStripMenuItem
+            // 
+            alterarDadosToolStripMenuItem.Name = "alterarDadosToolStripMenuItem";
+            alterarDadosToolStripMenuItem.Size = new Size(180, 22);
+            alterarDadosToolStripMenuItem.Text = "Alterar Dados";
+            alterarDadosToolStripMenuItem.Click += alterarDadosToolStripMenuItem_Click;
             // 
             // Banco
             // 
@@ -149,5 +158,6 @@
         private ToolStripMenuItem logOutToolStripMenuItem;
         private ToolStripMenuItem fecharToolStripMenuItem;
         private ToolStripMenuItem criarContaToolStripMenuItem;
+        private ToolStripMenuItem alterarDadosToolStripMenuItem;
     }
 }

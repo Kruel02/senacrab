@@ -22,13 +22,19 @@ namespace pjrAtiv
         public Banco()
         {
             InitializeComponent();
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.Height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 2;
             this.Width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 2;
             logOutToolStripMenuItem.Enabled = false;
 
+
+
         }
         MethodCall call;
         SqlCommand cmd = new SqlCommand();
+
 
 
 
@@ -79,7 +85,7 @@ namespace pjrAtiv
 
         private void Banco_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -119,7 +125,7 @@ namespace pjrAtiv
                 MessageBox.Show(rowsAffected.ToString() + UsuarioLogado.CPF);
             }
             conexao.Close();
-
+            UsuarioLogado.Deslogar();
 
 
         }
@@ -176,6 +182,20 @@ namespace pjrAtiv
             CadastrarConta = new CriarConta();
             CadastrarConta.MdiParent = this;
             CadastrarConta.Show();
+        }
+
+        private void alterarDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AtualizarCadastro Atualizar = new AtualizarCadastro();
+
+            Atualizar.MdiParent = this;
+            Atualizar.Show();
+
+        }
+
+        private void depositoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

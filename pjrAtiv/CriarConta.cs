@@ -21,6 +21,9 @@ namespace pjrAtiv
         
         public CriarConta()
         {
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
             TxtSenha.Text = 123.ToString();
             textBox1.Text = 123.ToString();
